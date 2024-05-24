@@ -210,7 +210,7 @@ class: middle
   - GitRepo : Microsoft har sit eget Version Control System  (VSC) som bruker Git teknologien, fungerer for våre formål likt
   -  Så kloner man repository
   - Hent URL'en fra DevOps prosjektet
-  ![alt text {768x432} ](./images/005_DevOps-clone.png "Klone GitRepo.")
+  <img src="./images/005_DevOps-clone.png" width="700" height="200">
 
 ---
 
@@ -218,17 +218,26 @@ class: middle
       - ![alt text](./images/006_DevOps-copy-url.png "Kopier URLen")
     - Gå i terminalen der du ønsker å legge repositoryen og lag en kopi (clone) den der
     - > git clone URL
+
+---
+
   - Nå skal vi knytte repo lokasjonen til VScode
     - ![alt text](./images/007_VScode-add-workspace.png "Legg til nytt fil directory")
   - Finn den riktige lokasjonen med FileExplorer og legg den til
   - Da dukker filene opp i venstre side av VScode
     - ![alt text](./images/008_New-workspace.png "Ny klonet repo er synlig.")
+
+---
+
   - Og nå kan vi se at VScode sporer endringer i vår kode
     - ![alt text](./images/009_Versjon-kontroll.png "VScode holder oppsyn med endringer")
   - Legg merke til at det er forskjellige symboler i dette bildet:
     - main : indikasjon av branch
     - Message : commit message som skal knyttes til denne commit
     - Commit : operasjon vi kan utføre (det er flere under v-menyen)
+
+---
+  
     - Changes (10) : antall endringer gjort siden siste commit
     - Navn på filen / lokasjon / bokstav
       - M : modified
@@ -240,6 +249,9 @@ class: middle
   - for enkelte filer eller
     - > git add .
   - for alle filer
+
+---
+
   - i VScode må vi peke på bokstaven ved filnavnet
     - ![alt text](./images/010_M-bokstav.png "Fil kommit menu")
   - hvor vi har følgende muligheter fra venstre
@@ -249,7 +261,10 @@ class: middle
   - Efter at man har trykket på commit så ser ting slik ut
     - ![alt text](./images/012_Efter_commit.png "Efter commit, klar til synkronisering til remote repo")
     - Alle endringer er kommitet til lokal repo
-  - Om du sjekker DevOps så vil vi fortsatt ikke se noen av våre endringer, hvilket bekrefter at endringene er tatt vare på, men fortsatt bare lokalt
+
+---
+
+    - Om du sjekker DevOps så vil vi fortsatt ikke se noen av våre endringer, hvilket bekrefter at endringene er tatt vare på, men fortsatt bare lokalt
     - vi kan miste de ved laptop feil
     - ingen på vårt team kan se endringene enda
   - Nå må vi trykke på Sync knappen
@@ -262,10 +277,13 @@ class: middle
   - Så langt har vi lagt til endringer i main, hvilket er greit for å lære men skal ikke praktiseres på riktige prosjekter da det vil føre til problemmer.
   - Det er her vi må vende tilbake til branching
   - VScode tillater oss å lage nye brancher på følgende måte
-    - ![alt text](./images/014_VScode-new-branch.png "Lag en ny branch og gi den et")
+    - <img src="./images/014_VScode-new-branch.png" width="700" height="200">
   - Så vil vi se i menuen til venstre at vi jobber i den nye branchen
-    - ![alt text](./images/015_VScode-new-branch-menu.png "Vi er ikke lenger i main branchen.")
-  - Alle edringer fra nå av vil kun sees i vår branch og ikke i main branchen
+    - <img src="./images/015_VScode-new-branch-menu.png" width="700" height="200">
+ 
+---
+
+    - Alle edringer fra nå av vil kun sees i vår branch og ikke i main branchen
   - Det er inntil vi merger disse sammen
     - Husk å lagre alle endringer
     - Stage alle disse
@@ -273,15 +291,24 @@ class: middle
     - Synce med remote repo - første gang vil det hete "Publish Branch" for branchen eksisterer så langt bare lokalt
     - Se avsnitt over for hvordan
     - Se i DevOps at den nye branchen fins nå og at endringene bare fins i denne og ikke i main! Hurra!!! \o/
+
+---
+
   - Merge kan gjøres fra DevOps gjennom en Pull Request (PR)
     - Starte en PR
-    - ![alt text](./images/017_DevOps-new-pull-request.png "Starte en ny PR")
+    - <img src="./images/017_DevOps-new-pull-request.png" width="700" height="200">
+
+---
+
     - Fylle viktige detaljer
       - fra_branch -> til_branch
       - Titel på PR'en
       - Beskrivelse av hva er tilføyet/endret
       - Hvem skal godkjenne PR'en
-      - ![alt text](./images/018_DevOps-pull-request-details.png)
+      - <img src="./images/018_DevOps-pull-request-details.png" width="700" height="400">
+  
+---
+
     - Godkjenne
       - De som er blitt valgt til å godkjenne vil kunne gjøre det her
       - Godkjenning bør gjøres av andre på teamet:
@@ -289,22 +316,34 @@ class: middle
         - prosjekt manager
         - prosjekt eier
       - Legge til kommentarer f.eks. LooksGoodToMe etc.
-      - ![alt text](./images/019_DevOps-pull-request-approval.png)
+      - <img src="./images/019_DevOps-pull-request-approval.png" width="700" height="400">
+  
+---
+
     - Ferdigstille
-      - ![alt text](./images/020_DevOps-pull-request-complete.png)
+      - <img src="./images/020_DevOps-pull-request-complete.png" width="400" height="600">
+
+---
+
     - Ingen merge-conflict
       - Vi ser at systemmet forteller oss at det ikke er noen konflikt mellom main- eller ny- branch
-      - ![alt text](./images/021_DevOps-pull-request-final.png)
+      - <img src="./images/021_DevOps-pull-request-final.png" width="700" height="400">
+
+---
+
     - Merge bør kanskje gjøres fra VScode da det har flere muligheter enn DevOps
       - Specielt hvis vi har en merge-conflict
       - Dette krever en ekstra plug-in i DevOps som ikke er standard, men støttes godt i VScode
         - Start prosessen fra main-branchen
-          - ![alt text](./images/022_VScode-merge-menu.png "Merge i VScode")
-        - Velg branchen som vi skal merge fra
-          - ![alt text](./images/023_VScode-merge-from-branch.png "Merge from branch")
-        - Så ser vi følgende bilde i Source Control menuet
-          - ![alt text](./images/024_VScode-merge-resultat-push.png "Merge klar til push")
-        - Da er det bare å trykke på "Push" ikonen og vupti så ser vi de siste endringer i main-branchen
+          - <img src="./images/022_VScode-merge-menu.png" width="500" height="400">
+
+---
+
+    - Velg branchen som vi skal merge fra
+      - <img src="./images/023_VScode-merge-from-branch.png" width="700" height="200">
+    - Så ser vi følgende bilde i Source Control menuet
+      - <img src="./images/024_VScode-merge-resultat-push.png" width="300" height="200">
+    - Da er det bare å trykke på "Push" ikonen og vupti så ser vi de siste endringer i main-branchen
 
 ---
 
@@ -315,41 +354,66 @@ class: middle
   - Det skjer fordi task'ene vi jobber på er ikke av lik størrelse etc.
   - Som sagt så er den vanligste måten å gjøre en Rebase, dvs man oppdaterer sin branch med endringene i main branchen før man merger.
   . Det virker veldig ofte, men det kan være situasjoner hvor det må et møte til hvor man drøfter de ulike endringer og blir enig om hva blir den siste og riktige.
+  
+---
+
   - Det er best å illustrere det med et eksempel hvor vi jobber på samme tekst fil i flere brancher.
   - Lag branch-1
-    - ![alt text](./images/025_Merge-konflikt-br1.png "Branch-1 endringer")
+    - <img src="./images/025_Merge-konflikt-br1.png" width="700" height="200">
   - Lag branch-2
-    - ![alt text](./images/026_Merge-konflikt-br2.png "Branch-2 endringer")
+    - <img src="./images/026_Merge-konflikt-br2.png" width="700" height="200">
+  
+---
+
   - Merge branch-2 i main
-    - ![alt text](./images/027_Merge-konflikt-main-updated.png "Merge branch-2 i main")
+    - <img src="./images/027_Merge-konflikt-main-updated.png" width="700" height="200">
   - Og nå ser DevOps slik ut...
-    - ![alt text](./images/028_Merge-konflikt-DevOps-updated.png)
+    - <img src="./images/028_Merge-konflikt-DevOps-updated.png" width="700" height="200">
     - hvor branch-2 er i sync med main
+
+---
+
     - men branch-1 er to commits bak main or har en tilføyelse som ikke er kommet med enda
   - Hvis vi nå merger branch-1 i main får vi en merge konflkt
-    - ![alt text](./images/029_Merge-konflikt-old.png)
+    - <img src="./images/029_Merge-konflikt-old.png" width="700" height="500">
+  
+---
+
     - dette er den gamle måten dette ble presentert på og ligner noe på det vi vil se på cmd
   - Det er bedre å velge Merge Editor
-    - ![alt text](./images/030_Merge-konflikt-new.png)
+    - <img src="./images/030_Merge-konflikt-new.png" width="700" height="500">
     - Da ser vi hva som er i main branchen (venstre)
     - Og det vi kommer med (høyre)
+
+---
+
     - men det kan fortsatt være noe forvirrende
   - Heldigvis kan vi også tilføye commit vi startet med (se konsept tegning i start av dette avsnittet)
-    - ![alt text](./images/031_Merge-konflikt-new-add-base.png)
+    - <img src="./images/031_Merge-konflikt-new-add-base.png" width="700" height="500">
     - Det er i ...-menu til høyre og vi kan velge å ha base i midten
-    - ![alt text](./images/032_Merge-konflikt-w-base.png)
+
+---
+
+  - Det er i ...-menu til høyre og vi kan velge å ha base i midten
+    - <img src="./images/032_Merge-konflikt-w-base.png" width="700" height="500">
+
+---
+
   - Her kan vi velge forskjellige scenarioer
     - Akseptere Incomming (main)
     - Akseptere Current (vår branch)
     - Akseptere begge i forskjellig orden
     - Ignorere deler
     - og ikke minst editere resultatet under
-    - ![alt text](./images/033_Merge-konflikt-solved.png)
+    - <img src="./images/033_Merge-konflikt-solved.png" width="700" height="400">
+
+---
+
   - Når vi er klare så kan vi trykke på Complete Merge og da blir filen staged
   - Da er vi klare til å commite og pushe.
   - Nå skal main være oppdatert og klart
   - Ser vi på brancher i DevOps så ser det slik ut
-    - ![alt text](./images/034_Merge-konflikt-solved-DevOps.png "Merge konflikt løst som den ser ut i DevOps")
+    - <img src="./images/034_Merge-konflikt-solved-DevOps.png" width="700" height="200">
     - Vi ser at nå er både branch-1 og branch-2 ut av sync
     - Det er fordi main har allt og disse har bare deler
     - Dette er grunnen til at det er lurt å slette en feature branch etter at den er merget
@@ -359,6 +423,8 @@ class: middle
       - derfor er det lurt å lage mange små tasks som er lettere å ferdigstille
       - commite og pushe ofte
       - og når man får en merge konflikt så er det egentlig en invitasjon til et møte hvor man kan drøfte problemmet
+
+---
 
 Dette bør dekke nok for de fleste. Med denne kunnskapen skal man klare å løse de fleste problemmer med Git. Og om man er usikker er det en god ide å stoppe opp lage nye brancher av de branchene man jobber på og prøve å løse problemmet der for om man skulle være uheldig så kan man bare slette disse nye branchene og starte forfra. **Det kan man kalle en Undo-knapp!**
 
