@@ -17,3 +17,6 @@ Før vi begynner trenger vi disse tingene:
     - Skriv:
       - > cd Documents
       - > git clone URLen
+        - dette lager en kopi av denne repo
+      - helst lage en fork som man kan dele med gruppen man jobber i
+      
