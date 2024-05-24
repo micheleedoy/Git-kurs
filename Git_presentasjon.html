@@ -24,7 +24,7 @@ class: center, middle
 ## Git presentasjon
 
 ---
-class: center
+class: middle
 
 ### Agenda:
   - Hvorfor versjon kontroll
@@ -33,7 +33,7 @@ class: center
   - Del kode med kollega
 
 ---
-class: center
+class: middle
  
 ### Hvorfor versjon kontroll - et scenarie
   - Lag et tekst dokument
@@ -51,7 +51,7 @@ class: center
 ### Første steg med versjon kontroll - et annet scenarie med CMD
 Denne forutsetter at man har installert Git, se her: https://gitforwindows.org/
   - Lag et tekst dokument og legg dokumentet til git
-    - >git status
+    - > git status
     - Vi ser at der er endringer som ikke spores
     - >git add .
     - >git status
@@ -60,6 +60,9 @@ Denne forutsetter at man har installert Git, se her: https://gitforwindows.org/
     - >git status
     - Vi ser at ting er 'stages' og grønn farge indikerer at ting spores nå
     - (commit lokalt, forklaring følger senere)
+
+---
+
   - Legg til noen endringer til filen (samme som i forrige scenarie) og lagre
     - >git status
     - >git add .
@@ -72,6 +75,10 @@ Denne forutsetter at man har installert Git, se her: https://gitforwindows.org/
     - finn hashen
     - >git checkout hash
     - se på filen nå
+  - Wow! Dette er helt magisk!!!
+
+---
+
   - Wow! Dette er helt magisk!!!
     - >git log
     - Vi ser at vi er i tidligere commit, men vi ser ikke lenger det som kom etter...
@@ -103,6 +110,9 @@ Denne forutsetter at man har installert Git, se her: https://gitforwindows.org/
     - Sjekk remote repo (Github/GitRepos) online
     - Vi ser at ting er 'stages' og grønn farge indikerer at ting spores nå
     - (commit lokalt, forklaring følger senere)
+
+---
+
   - Legg til noen endringer til filen (samme som i forrige scenarie) og lagre
     - >git status
     - >git add .
@@ -118,6 +128,10 @@ Denne forutsetter at man har installert Git, se her: https://gitforwindows.org/
     - >git checkout hash
     - se på filen nå
   - Wow! Dette er helt magisk!!!
+
+---
+
+  - Wow! Dette er helt magisk!!!
     - >git log
     - Vi ser at vi er i tidligere commit, men vi ser ikke lenger det som kom etter...
     - >git checkout main
@@ -130,6 +144,7 @@ Denne forutsetter at man har installert Git, se her: https://gitforwindows.org/
   - Wow! Vi kan få ting tilbake selvom vi mister laptop i elven
 
 ---
+class: middle
 
 ### Del kode med kollega
   - Tillit:
@@ -138,6 +153,11 @@ Denne forutsetter at man har installert Git, se her: https://gitforwindows.org/
     - Vent! Dette kan løses på en annen måte, men jeg vil ikke miste det jeg har gjort inntil videre...
     - Med andre ord, kan vi stole på at de/jeg ikke ødelegger det vi har gjort inntil nå?
     - Dette gjør at vi er mindre bekymret for feil og kan utvikle fortere
+
+---
+class: middle
+
+### Branch
   - Hva er en branch?
     - >git checkout -b <branch-name>
     - Dette lager en ny branch
@@ -148,6 +168,11 @@ Denne forutsetter at man har installert Git, se her: https://gitforwindows.org/
     - Uansett hva vi gjør så endrer det ikke koden for andre
     - På den måten kan vi eksperimentere med ting som vi er usikre på
     - Vi kan teste forskjellige løp uten konsekvenser for den eksisterende og virkende kode basen
+
+---
+class: middle
+
+### Merge
   - Hva er en merge
     - Når vi er klare med en løsning (feature) som vi stoler på så kan vi flette den tilbake i kilden...
     - ![alt text](./images/002_Merge.png "Merge er å føre den nye koden tilbake til hoved utviklingen")
@@ -159,6 +184,9 @@ Denne forutsetter at man har installert Git, se her: https://gitforwindows.org/
       - Retningslinier
       - etc.
   - Når man fikser ting sammen blir man bedre sammen.
+
+---
+class: middle
 
 ### Merge conflict
   - Når det er flere enn en utvikler som jobber på same kode base så vil det skje konflikter
@@ -182,7 +210,10 @@ Denne forutsetter at man har installert Git, se her: https://gitforwindows.org/
   - GitRepo : Microsoft har sit eget Version Control System  (VSC) som bruker Git teknologien, fungerer for våre formål likt
   -  Så kloner man repository
     - Hent URL'en fra DevOps prosjektet
-      - ![alt text](./images/005_DevOps-clone.png "Klone GitRepo.")
+![AltText {priority}{10x10}](./images/005_DevOps-clone.png "Klone GitRepo.")
+
+---
+
     - Kopier selve URL'en
       - ![alt text](./images/006_DevOps-copy-url.png "Kopier URLen")
     - Gå i terminalen der du ønsker å legge repositoryen og lag en kopi (clone) den der
