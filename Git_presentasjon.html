@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Title</title>
+    <meta charset="utf-8">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body { font-family: 'Droid Serif'; }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: normal;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+
+class: center, middle
+
+## Git presentasjon
+
+---
+class: center, middle
+
+### Agenda:
+  - Hvorfor versjon kontroll
+  - Første steg med versjon kontroll
+  - Andre steg med versjon kontroll
+  - Del kode med kollega
+
+---
+class: center, middle
+ 
+### Hvorfor versjon kontroll - et scenarie
+  - Lag et tekst dokument
+  - Legg til noe : minst en linie
+  - Lagre
+  - Legg til noe mer
+  - Lagre
+  - Slett noe fra første runde av skriving
+    - Bruk Undo knapp
+    - Slett, lagre og lukke editor
+  - Gå tilbake til den første versjonen - Ups, det er plutselig ikke mulig.
+
+---
+
+### Første steg med versjon kontroll - et annet scenarie med CMD
+Denne forutsetter at man har installert Git, se her: https://gitforwindows.org/
+  - Lag et tekst dokument og legg dokumentet til git
+    - >git status
+    - Vi ser at der er endringer som ikke spores
+    - >git add .
+    - >git status
+    - Vi ser at det er noe lagt til 
+    - >git commit -m  'Initial commit'
+    - >git status
+    - Vi ser at ting er 'stages' og grønn farge indikerer at ting spores nå
+    - (commit lokalt, forklaring følger senere)
+  - Legg til noen endringer til filen (samme som i forrige scenarie) og lagre
+    - >git status
+    - >git add .
+    - >git commit -m 'First change'
+  - Slett noe fra første runde og lagre
+    - >git add .
+    - >git commit -m 'Second change'
+  - Gå tilbake til den første versjonen
+    - >git log
+    - finn hashen
+    - >git checkout hash
+    - se på filen nå
+  - Wow! Dette er helt magisk!!!
+    - >git log
+    - Vi ser at vi er i tidligere commit, men vi ser ikke lenger det som kom etter...
+    - >git checkout main (master tidligere)
+    - Se på filen nå!!!! Fantastisk ikke!
+    - >git log
+    - Vi ser at alt er som det var ved siste version med historien på plass
+  - Nå ser vi på loggen igjen
+    - >git log
+    - finn to hasher
+    - >git diff hash1 hash2
+    - Vi ser hva som er forskjellen mellom disse.
+    - Dette kan vi bruke senere
+  - Slett folderen som dokumentet ligger i
+  - ...Ups! Git virker ikke lenger
+
+---
+
+### Andre steg med versjon kontroll - et scenarie med remote repo
+  - Lag et tekst dokument og legg dokumentet til git
+    - >git status
+    - Vi ser at der er endringer som ikke spores
+    - >git add .
+    - >git status
+    - Vi ser at det er noe lagt til 
+    - >git commit -m  'Initial commit'
+    - >git push
+    - >git status
+    - Sjekk remote repo (Github/GitRepos) online
+    - Vi ser at ting er 'stages' og grønn farge indikerer at ting spores nå
+    - (commit lokalt, forklaring følger senere)
+  - Legg til noen endringer til filen (samme som i forrige scenarie) og lagre
+    - >git status
+    - >git add .
+    - >git commit -m 'First change'
+    - >git push
+  - Slett noe fra første runde og lagre
+    - >git add .
+    - >git commit -m 'Second change'
+    - >git push
+  - Gå tilbake til den første versjonen
+    - >git log
+    - finn hashen
+    - >git checkout hash
+    - se på filen nå
+  - Wow! Dette er helt magisk!!!
+    - >git log
+    - Vi ser at vi er i tidligere commit, men vi ser ikke lenger det som kom etter...
+    - >git checkout main
+    - Se på filen nå!!!! Fantastisk ikke!
+    - >git log
+    - Vi ser at alt er som det var ved siste version med historien på plass
+  - Slett folderen som dokumentet ligger i ... Ups!
+  - Sjekk remote repo...
+  - >git clone repo-url
+  - Wow! Vi kan få ting tilbake selvom vi mister laptop i elven
+
+---
+
+### Del kode med kollega
+  - Tillit:
+    - De er da ikke så gode til å kode som meg...
+    - Jeg er ikke så god til å kode som de andre...
+    - Vent! Dette kan løses på en annen måte, men jeg vil ikke miste det jeg har gjort inntil videre...
+    - Med andre ord, kan vi stole på at de/jeg ikke ødelegger det vi har gjort inntil nå?
+    - Dette gjør at vi er mindre bekymret for feil og kan utvikle fortere
+  - Hva er en branch?
+    - >git checkout -b <branch-name>
+    - Dette lager en ny branch
+    - >git branch
+    - Dette lister brancher vi har og hvilken branch vi står i
+    - ![alt text](./images/001_Ny-branch.png "Ny branch fra main.")
+    - Vi lager vår egen kopi av koden som vi kan gøre endringer på
+    - Uansett hva vi gjør så endrer det ikke koden for andre
+    - På den måten kan vi eksperimentere med ting som vi er usikre på
+    - Vi kan teste forskjellige løp uten konsekvenser for den eksisterende og virkende kode basen
+  - Hva er en merge
+    - Når vi er klare med en løsning (feature) som vi stoler på så kan vi flette den tilbake i kilden...
+    - ![alt text](./images/002_Merge.png "Merge er å føre den nye koden tilbake til hoved utviklingen")
+  - Hva er en pull request
+    - En forespørsel om en merge av en feature branch
+    - Koden skal sees over, godkjennes eller kommenteres
+    - Det skal være enighet om koden før den godkjennes
+      - Riktighet
+      - Retningslinier
+      - etc.
+  - Når man fikser ting sammen blir man bedre sammen.
+
+### Merge conflict
+  - Når det er flere enn en utvikler som jobber på same kode base så vil det skje konflikter
+  - Under er et eksempel på en merge conflict
+    - ![alt text](./images/003_Merge-konflikt.png "To brancher startet sammen men merget på forskjellig tidspunkt resulterer i merge conflict")
+  - Dette kan løses på flere måter, rebase er vel den mest vanlige 
+    - ![alt text](./images/004_Rebase.png "Rebase oppdaterer grunn branchen man gikk utifra og legger til endringene slik man kan gjennomføre en merge")
+  - En Rebase fører til at tidslinien blir endret, men det er meget sjeldent at det har noe betydning.
+
+---
+
+### Vanlige 'kjøre' regler
+  - Jobb på små tasks
+  - Commit ofte og merge inn ofte
+  - ...
+
+---
+
+ ### Git i VScode
+  - Det enkleste er å lage et prosjekt i Azure DevOps og lage et GitRepo
+  - GitRepo : Microsoft har sit eget Version Control System  (VSC) som bruker Git teknologien, fungerer for våre formål likt
+  -  Så kloner man repository
+    - Hent URL'en fra DevOps prosjektet
+      - ![alt text](./images/005_DevOps-clone.png "Klone GitRepo.")
+    - Kopier selve URL'en
+      - ![alt text](./images/006_DevOps-copy-url.png "Kopier URLen")
+    - Gå i terminalen der du ønsker å legge repositoryen og lag en kopi (clone) den der
+    - > git clone URL
+  - Nå skal vi knytte repo lokasjonen til VScode
+    - ![alt text](./images/007_VScode-add-workspace.png "Legg til nytt fil directory")
+  - Finn den riktige lokasjonen med FileExplorer og legg den til
+  - Da dukker filene opp i venstre side av VScode
+    - ![alt text](./images/008_New-workspace.png "Ny klonet repo er synlig.")
+  - Og nå kan vi se at VScode sporer endringer i vår kode
+    - ![alt text](./images/009_Versjon-kontroll.png "VScode holder oppsyn med endringer")
+  - Legg merke til at det er forskjellige symboler i dette bildet:
+    - main : indikasjon av branch
+    - Message : commit message som skal knyttes til denne commit
+    - Commit : operasjon vi kan utføre (det er flere under v-menyen)
+    - Changes (10) : antall endringer gjort siden siste commit
+    - Navn på filen / lokasjon / bokstav
+      - M : modified
+      - U : untracked
+      - A : added - staged
+  - Når vi er ferdige med å tilføre/endre kode så bør vi altid lage en commit slik vi bevarer endringene i en form for snapshot i tiden, men for at det skal skje må vi legge til endringene til en stage.
+  - På kommando linien gjorde vi det med
+    - > git add filnavn
+  - for enkelte filer eller
+    - > git add .
+  - for alle filer
+  - i VScode må vi peke på bokstaven ved filnavnet
+    - ![alt text](./images/010_M-bokstav.png "Fil kommit menu")
+  - hvor vi har følgende muligheter fra venstre
+    - Open file : for å inspisere endringene
+    - Discard changes : tilbake til start posisjonen for filen
+    - + : Stage changes, samme som **add** på cmd
+  - Efter at man har trykket på commit så ser ting slik ut
+    - ![alt text](./images/012_Efter_commit.png "Efter commit, klar til synkronisering til remote repo")
+    - Alle endringer er kommitet til lokal repo
+  - Om du sjekker DevOps så vil vi fortsatt ikke se noen av våre endringer, hvilket bekrefter at endringene er tatt vare på, men fortsatt bare lokalt
+    - vi kan miste de ved laptop feil
+    - ingen på vårt team kan se endringene enda
+  - Nå må vi trykke på Sync knappen
+    - ![alt text](./images/013_Efter_sync_til_remote.png "Efter sync til remote repo")
+  - Og vi kan nå se de siste endringer i DevOps repo.
+
+---
+
+ ### Branching i VScode
+  - Så langt har vi lagt til endringer i main, hvilket er greit for å lære men skal ikke praktiseres på riktige prosjekter da det vil føre til problemmer.
+  - Det er her vi må vende tilbake til branching
+  - VScode tillater oss å lage nye brancher på følgende måte
+    - ![alt text](./images/014_VScode-new-branch.png "Lag en ny branch og gi den et")
+  - Så vil vi se i menuen til venstre at vi jobber i den nye branchen
+    - ![alt text](./images/015_VScode-new-branch-menu.png "Vi er ikke lenger i main branchen.")
+  - Alle edringer fra nå av vil kun sees i vår branch og ikke i main branchen
+  - Det er inntil vi merger disse sammen
+    - Husk å lagre alle endringer
+    - Stage alle disse
+    - Commite med melding
+    - Synce med remote repo - første gang vil det hete "Publish Branch" for branchen eksisterer så langt bare lokalt
+    - Se avsnitt over for hvordan
+    - Se i DevOps at den nye branchen fins nå og at endringene bare fins i denne og ikke i main! Hurra!!! \o/
+  - Merge kan gjøres fra DevOps gjennom en Pull Request (PR)
+    - Starte en PR
+    - ![alt text](./images/017_DevOps-new-pull-request.png "Starte en ny PR")
+    - Fylle viktige detaljer
+      - fra_branch -> til_branch
+      - Titel på PR'en
+      - Beskrivelse av hva er tilføyet/endret
+      - Hvem skal godkjenne PR'en
+      - ![alt text](./images/018_DevOps-pull-request-details.png)
+    - Godkjenne
+      - De som er blitt valgt til å godkjenne vil kunne gjøre det her
+      - Godkjenning bør gjøres av andre på teamet:
+        - utvikler
+        - prosjekt manager
+        - prosjekt eier
+      - Legge til kommentarer f.eks. LooksGoodToMe etc.
+      - ![alt text](./images/019_DevOps-pull-request-approval.png)
+    - Ferdigstille
+      - ![alt text](./images/020_DevOps-pull-request-complete.png)
+    - Ingen merge-conflict
+      - Vi ser at systemmet forteller oss at det ikke er noen konflikt mellom main- eller ny- branch
+      - ![alt text](./images/021_DevOps-pull-request-final.png)
+    - Merge bør kanskje gjøres fra VScode da det har flere muligheter enn DevOps
+      - Specielt hvis vi har en merge-conflict
+      - Dette krever en ekstra plug-in i DevOps som ikke er standard, men støttes godt i VScode
+        - Start prosessen fra main-branchen
+          - ![alt text](./images/022_VScode-merge-menu.png "Merge i VScode")
+        - Velg branchen som vi skal merge fra
+          - ![alt text](./images/023_VScode-merge-from-branch.png "Merge from branch")
+        - Så ser vi følgende bilde i Source Control menuet
+          - ![alt text](./images/024_VScode-merge-resultat-push.png "Merge klar til push")
+        - Da er det bare å trykke på "Push" ikonen og vupti så ser vi de siste endringer i main-branchen
+
+---
+
+ ### Merge conflikt i VScode
+  - Når det er flere folk som jobber sammen på et prosjekt kan det ikke ungås at man får et merge conflikt.
+  - Dette ble beskrevet over og kan se slikt ut
+    - ![alt text](./images/003_Merge-konflikt.png)
+  - Det skjer fordi task'ene vi jobber på er ikke av lik størrelse etc.
+  - Som sagt så er den vanligste måten å gjøre en Rebase, dvs man oppdaterer sin branch med endringene i main branchen før man merger.
+  . Det virker veldig ofte, men det kan være situasjoner hvor det må et møte til hvor man drøfter de ulike endringer og blir enig om hva blir den siste og riktige.
+  - Det er best å illustrere det med et eksempel hvor vi jobber på samme tekst fil i flere brancher.
+  - Lag branch-1
+    - ![alt text](./images/025_Merge-konflikt-br1.png "Branch-1 endringer")
+  - Lag branch-2
+    - ![alt text](./images/026_Merge-konflikt-br2.png "Branch-2 endringer")
+  - Merge branch-2 i main
+    - ![alt text](./images/027_Merge-konflikt-main-updated.png "Merge branch-2 i main")
+  - Og nå ser DevOps slik ut...
+    - ![alt text](./images/028_Merge-konflikt-DevOps-updated.png)
+    - hvor branch-2 er i sync med main
+    - men branch-1 er to commits bak main or har en tilføyelse som ikke er kommet med enda
+  - Hvis vi nå merger branch-1 i main får vi en merge konflkt
+    - ![alt text](./images/029_Merge-konflikt-old.png)
+    - dette er den gamle måten dette ble presentert på og ligner noe på det vi vil se på cmd
+  - Det er bedre å velge Merge Editor
+    - ![alt text](./images/030_Merge-konflikt-new.png)
+    - Da ser vi hva som er i main branchen (venstre)
+    - Og det vi kommer med (høyre)
+    - men det kan fortsatt være noe forvirrende
+  - Heldigvis kan vi også tilføye commit vi startet med (se konsept tegning i start av dette avsnittet)
+    - ![alt text](./images/031_Merge-konflikt-new-add-base.png)
+    - Det er i ...-menu til høyre og vi kan velge å ha base i midten
+    - ![alt text](./images/032_Merge-konflikt-w-base.png)
+  - Her kan vi velge forskjellige scenarioer
+    - Akseptere Incomming (main)
+    - Akseptere Current (vår branch)
+    - Akseptere begge i forskjellig orden
+    - Ignorere deler
+    - og ikke minst editere resultatet under
+    - ![alt text](./images/033_Merge-konflikt-solved.png)
+  - Når vi er klare så kan vi trykke på Complete Merge og da blir filen staged
+  - Da er vi klare til å commite og pushe.
+  - Nå skal main være oppdatert og klart
+  - Ser vi på brancher i DevOps så ser det slik ut
+    - ![alt text](./images/034_Merge-konflikt-solved-DevOps.png "Merge konflikt løst som den ser ut i DevOps")
+    - Vi ser at nå er både branch-1 og branch-2 ut av sync
+    - Det er fordi main har allt og disse har bare deler
+    - Dette er grunnen til at det er lurt å slette en feature branch etter at den er merget
+    - Legg merke til at dette er et lite eksempel som:
+      - er enkelt å løse
+      - men i virkeligheten så kan ting bli fort rotete
+      - derfor er det lurt å lage mange små tasks som er lettere å ferdigstille
+      - commite og pushe ofte
+      - og når man får en merge konflikt så er det egentlig en invitasjon til et møte hvor man kan drøfte problemmet
+
+Dette bør dekke nok for de fleste. Med denne kunnskapen skal man klare å løse de fleste problemmer med Git. Og om man er usikker er det en god ide å stoppe opp lage nye brancher av de branchene man jobber på og prøve å løse problemmet der for om man skulle være uheldig så kan man bare slette disse nye branchene og starte forfra. **Det kan man kalle en Undo-knapp!**
+
+---
+class: center, middle
+
+Takk! ;D
+
+---
+
+### Git i Azure Data Factory
+
+WIP
+
+---
+
+### Git i Databricks
+
+WIP
+
+</textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js">
+</script>
+<script>
+  var slideshow = remark.create();
+</script>
+</body>
+</html>

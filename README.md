@@ -3,7 +3,7 @@ Test repo for Git kurs
 
 ---
 
-# Howot start
+# Howto start
 
 Før vi begynner trenger vi disse tingene:
   - Installer Git: https://git-scm.com/download/win

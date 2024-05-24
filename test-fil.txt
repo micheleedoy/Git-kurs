@@ -1,0 +1,4 @@
+Dette er en test fil for å illustrere en merge konflikt og hvordan man løser den.
+Lad oss legge til en endring.
+Lad oss legge til en annen
+...og en tredje endring...
